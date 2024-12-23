@@ -11,6 +11,7 @@ Xem video demo của dự án dưới đây:
 ## Installation
 
 # Cài đặt thư viện
+
 pip install -r requirements.txt
 
 streamlit run app.py
