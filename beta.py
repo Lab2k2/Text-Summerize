@@ -4,6 +4,7 @@ from langchain.schema import Document  # Import Document
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import PromptTemplate
 from langchain.chains.summarize import load_summarize_chain
+from llm_model import llm
 
 # Thiết lập User-Agent
 USER_AGENT = "MyApp/1.0"
@@ -26,13 +27,6 @@ if not documents:
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 split_docs = text_splitter.split_documents(documents)
-
-api_key = os.getenv("GOOGLE_API_KEY", "AIzaSyCy-F4waBhpZEwUeT5FH-ulfOT_0ySKOXw")
-if api_key == "AIzaSyCy-F4waBhpZEwUeT5FH-ulfOT_0ySKOXw":
-    print("Warning: Using default API key. Consider setting GOOGLE_API_KEY.")
-
-os.environ["GOOGLE_API_KEY"] = api_key
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
 
 map_prompt = """
 You are an expert summarizer. Summarize the following text concisely:
